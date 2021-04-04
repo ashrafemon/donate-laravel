@@ -99,11 +99,11 @@ class AuthController extends Controller
         }
 
         if ($img->getMimeType() === 'image/png') {
-            $avatar_name = 'assets/images/users/user' . Str::random(6) . '.png';
+            $avatar_name = 'assets/images/users/' . Str::slug(request('name')) . '-' . Str::random(6) . '.png';
             Image::make($img)->save($avatar_name, 80);
             $user->avatar = request()->getHost() . '/' . $avatar_name;
         } else {
-            $avatar_name = 'assets/images/users/user' . Str::random(6) . '.jpg';
+            $avatar_name = 'assets/images/users/' . Str::slug(request('name')) . '-' . Str::random(6) . '.jpg';
             Image::make($img)->save($avatar_name, 80);
             $user->avatar = request()->getHost() . '/' . $avatar_name;
         }
